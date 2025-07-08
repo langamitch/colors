@@ -263,7 +263,6 @@ footer {
 .footer-links a:hover {
   color: #000000;
 }
-
 /* Responsive Design */
 @media (max-width: 768px) {
   .nav-links {
@@ -290,6 +289,8 @@ footer {
   }
 
   .add-color-btn {
-    margin-left: auto;
-  }
-}
+    margin-left: auto;
+  }
+} /* ← this was misplaced before */
+
+
