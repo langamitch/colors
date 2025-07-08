@@ -128,18 +128,39 @@ if (colorForm) {
 // Retrieve and Display Colors
 const colorGrid = document.getElementById("color-grid");
 if (colorGrid) {
-  function displayColor(docId, colorData) {
+  function displayColor(docId, colorData, index) {
     const sanitize = (str) => str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
     const card = document.createElement("div");
     card.className = "color-card";
-    card.style.backgroundColor = colorData.hex;
-    card.style.color = getContrastColor(colorData.hex);
-    card.innerHTML = `
-      <h3>${sanitize(colorData.name)}</h3>
-      <p>${sanitize(colorData.description)}</p>
-    `;
+
+    // Swatch
+    const swatch = document.createElement("div");
+    swatch.className = "swatch";
+    swatch.style.backgroundColor = colorData.hex;
+
+    // Info
+    const info = document.createElement("div");
+    info.className = "color-info";
+
+    // Title (number and name)
+    const title = document.createElement("div");
+    title.className = "color-title";
+    title.innerHTML = `<span class="color-number">${
+      index + 1
+    }.</span> <span class="color-name">${sanitize(colorData.name)}</span>`;
+
+    // Description
+    const desc = document.createElement("div");
+    desc.className = "color-desc";
+    desc.textContent = colorData.description;
+
+    info.appendChild(title);
+    info.appendChild(desc);
+
+    card.appendChild(swatch);
+    card.appendChild(info);
+
     colorGrid.appendChild(card);
-    console.log("Displayed color:", docId, colorData);
   }
 
   function getContrastColor(hex) {
@@ -153,12 +174,12 @@ if (colorGrid) {
   // Real-time listener
   colorsCollection.orderBy("timestamp", "desc").onSnapshot(
     (snapshot) => {
-      colorGrid.innerHTML = ""; // Clear grid to avoid duplicates
-      snapshot.forEach((doc) => {
+      colorGrid.innerHTML = "";
+      snapshot.forEach((doc, idx) => {
         const colorData = doc.data();
         const docId = doc.id;
         if (colorData.name && colorData.hex && colorData.description) {
-          displayColor(docId, colorData);
+          displayColor(docId, colorData, idx);
         } else {
           console.warn("Invalid color data for ID:", docId);
         }
@@ -169,5 +190,5 @@ if (colorGrid) {
     }
   );
 } else {
-  console.error("Color grid not found");
+  console.error("Color grid not found");
 }
