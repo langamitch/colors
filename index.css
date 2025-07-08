@@ -182,6 +182,9 @@ h1, h2 {
             margin-bottom: 15px;
             font-weight: normal;
 }
+.error-message{
+  color:red;
+}
 .close-btn { display: flex;
             position: absolute;
             top: 16px;
