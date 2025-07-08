@@ -18,13 +18,9 @@ try {
   console.error("Firebase initialization failed:", error.message);
 }
 
-const database = firebase.database();
-const colorsRef = database.ref("colors");
-
-// Test Firebase connection
-database.ref(".info/connected").on("value", (snap) => {
-  console.log("Firebase connection status:", snap.val());
-});
+// Initialize Firestore
+const db = firebase.firestore();
+const colorsCollection = db.collection("colors");
 
 // Navbar Toggle
 const navToggle = document.querySelector(".nav-toggle");
@@ -103,17 +99,20 @@ if (colorForm) {
       return;
     }
 
-    // Save to Firebase
-    const newColorRef = colorsRef.push();
-    newColorRef
-      .set({
+    // Save to Firestore
+    colorsCollection
+      .add({
         name: name,
         hex: hex,
         description: desc,
-        timestamp: firebase.database.ServerValue.TIMESTAMP,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       })
-      .then(() => {
-        console.log("Color submitted successfully:", { name, hex, desc });
+      .then((docRef) => {
+        console.log("Color submitted successfully:", docRef.id, {
+          name,
+          hex,
+          desc,
+        });
         closeOverlay();
       })
       .catch((error) => {
@@ -129,7 +128,7 @@ if (colorForm) {
 // Retrieve and Display Colors
 const colorGrid = document.getElementById("color-grid");
 if (colorGrid) {
-  function displayColor(colorId, colorData) {
+  function displayColor(docId, colorData) {
     const sanitize = (str) => str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
     const card = document.createElement("div");
     card.className = "color-card";
@@ -140,7 +139,7 @@ if (colorGrid) {
       <p>${sanitize(colorData.description)}</p>
     `;
     colorGrid.appendChild(card);
-    console.log("Displayed color:", colorId, colorData);
+    console.log("Displayed color:", docId, colorData);
   }
 
   function getContrastColor(hex) {
@@ -151,16 +150,19 @@ if (colorGrid) {
     return brightness > 128 ? "#000" : "#FFF";
   }
 
-  colorsRef.on(
-    "child_added",
+  // Real-time listener
+  colorsCollection.orderBy("timestamp", "desc").onSnapshot(
     (snapshot) => {
-      const colorData = snapshot.val();
-      const colorId = snapshot.key;
-      if (colorData) {
-        displayColor(colorId, colorData);
-      } else {
-        console.warn("Invalid color data for ID:", colorId);
-      }
+      colorGrid.innerHTML = ""; // Clear grid to avoid duplicates
+      snapshot.forEach((doc) => {
+        const colorData = doc.data();
+        const docId = doc.id;
+        if (colorData.name && colorData.hex && colorData.description) {
+          displayColor(docId, colorData);
+        } else {
+          console.warn("Invalid color data for ID:", docId);
+        }
+      });
     },
     (error) => {
       console.error("Error retrieving colors:", error.message);

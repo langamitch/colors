@@ -1,78 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Color Inspiration</title>
-  <link rel="stylesheet" href="index.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js"></script>
-  
-</head>
-<body>
-  <!-- Navigation Bar -->
-  <nav class="navbar">
-    <div class="logo"><p>Color System&trade;</p></div>
-    <ul class="nav-links">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#colors">Colors</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    
-    <button class="add-color-btn" onclick="openOverlay()">
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff">
-    <path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/>
-  </svg>
-  Add Color
-</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Color Inspiration</title>
+    <link rel="stylesheet" href="index.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <div class="logo"><p>Color System™</p></div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#colors">Colors</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button
+        class="add-color-btn"
+        onclick="openOverlay()"
+        aria-label="Add new color"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="24px"
+          viewBox="0 -960 960 960"
+          width="24px"
+          fill="#fff"
+        >
+          <path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z" />
+        </svg>
+        Add Color
+      </button>
+    </nav>
 
-  </nav>
+    <!-- Main Content -->
+    <main>
+      <section id="home">
+        <h1>The fastest growing color library in the world</h1>
+        <p>Explore a world of evocative hues and share your own.</p>
+      </section>
+      <section id="colors">
+        <h2 style="font-size: 13px; margin-top: 30px">Colors</h2>
+        <div class="color-grid" id="color-grid">
+          <!-- Colors will be populated dynamically -->
+        </div>
+      </section>
+    </main>
 
-  <!-- Main Content -->
-  <main>
-    <section id="home">
-      <h1>The fastest growing color library in the world</h1>
-      <p>Explore a world of evocative hues and share your own.</p>
-    </section>
-    <section id="colors">
-      <h2 style="font-size: 13px;margin-top: 30px;">Colors</h2>
-      <div class="color-grid" id="color-grid">
-        <!-- Colors will be populated dynamically -->
+    <!-- Overlay for Color Submission -->
+    <div id="color-overlay" class="overlay">
+      <span class="close-btn" aria-label="Close popup" onclick="closeOverlay()">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="24px"
+          viewBox="0 -960 960 960"
+          width="24px"
+          fill="#fff"
+        >
+          <path
+            d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
+          />
+        </svg>
+      </span>
+      <div class="overlay-content">
+        <h2>Submit Your Color</h2>
+        <form id="color-form">
+          <label for="color-name">Color Name:</label>
+          <input
+            type="text"
+            id="color-name"
+            name="color-name"
+            required
+            maxlength="50"
+            placeholder="Color name"
+          />
+          <label for="color-hex">Hex Code:</label>
+          <input
+            type="text"
+            id="color-hex"
+            name="color-hex"
+            placeholder="#FFFFFF"
+            required
+            pattern="^#[0-9A-Fa-f]{6}$"
+          />
+          <label for="color-desc">Description:</label>
+          <textarea
+            id="color-desc"
+            name="color-desc"
+            required
+            maxlength="200"
+            placeholder="Description"
+          ></textarea>
+          <button type="submit">Submit</button>
+          <p
+            style="
+              font-size: 13px;
+              color: #888;
+              line-height: 1.5;
+              padding: 0 10px;
+            "
+            class="note"
+          >
+            With so many submissions we cannot inform you when to call, nor give
+            you any feedback.
+          </p>
+        </form>
+        <p id="form-error" class="error-message"></p>
       </div>
-    </section>
-  </main>
-
-  <!-- Overlay for Color Submission -->
-  <div id="color-overlay" class="overlay">
-     <span class="close-btn" aria-label="Close popup" onclick="closeOverlay()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></span>
-    <div class="overlay-content">
-        
-     
-      <h2>Submit Your Color</h2>
-      
-      <form id="color-form">
-        <label for="color-name">Color Name:</label>
-        <input type="text" id="color-name" name="color-name" required maxlength="50">
-        <label for="color-hex">Hex Code:</label>
-        <input type="text" id="color-hex" name="color-hex" placeholder="#FFFFFF" required pattern="^#[0-9A-Fa-f]{6}$">
-        <label for="color-desc">Description:</label>
-        <textarea id="color-desc" name="color-desc" required maxlength="200"></textarea>
-        <button type="submit">Submit</button>
-         <p style="font-size: 13px;
-                color: #888;
-                line-height: 1.5;
-                padding: 0 10px;" class="note">With so many submissions we cannot inform you when to call, nor give you any feedback.</p>
-      </form>
-      <p id="form-error" class="error-message"></p>
     </div>
-  </div>
 
-  <!-- Footer -->
-
-
-  <script src="index.js"></script>
-</body>
+    <script src="index.js"></script>
+  </body>
 </html>
