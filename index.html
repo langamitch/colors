@@ -5,14 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Color Inspiration</title>
   <link rel="stylesheet" href="index.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js"></script>
+  
 </head>
 <body>
   <!-- Navigation Bar -->
   <nav class="navbar">
-    <div class="logo">Color Inspiration</div>
+    <div class="logo"><p>Color System&trade;</p></div>
     <ul class="nav-links">
       <li><a href="#home">Home</a></li>
       <li><a href="#colors">Colors</a></li>
@@ -41,9 +43,12 @@
 
   <!-- Overlay for Color Submission -->
   <div id="color-overlay" class="overlay">
+     <span class="close-btn" aria-label="Close popup" onclick="closeOverlay()">&times;</span>
     <div class="overlay-content">
-      <span class="close-btn" onclick="closeOverlay()">×</span>
-      <h2>Submit a Color</h2>
+        
+     
+      <h2>Submit Your Color</h2>
+      
       <form id="color-form">
         <label for="color-name">Color Name:</label>
         <input type="text" id="color-name" name="color-name" required maxlength="50">
@@ -52,6 +57,10 @@
         <label for="color-desc">Description:</label>
         <textarea id="color-desc" name="color-desc" required maxlength="200"></textarea>
         <button type="submit">Submit</button>
+         <p style="font-size: 13px;
+                color: #888;
+                line-height: 1.5;
+                padding: 0 10px;" class="note">With so many submissions we cannot inform you when to call, nor give you any feedback.</p>
       </form>
       <p id="form-error" class="error-message"></p>
     </div>
