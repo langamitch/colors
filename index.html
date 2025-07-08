@@ -21,20 +21,24 @@
       <li><a href="#about">About</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <button class="nav-toggle" aria-label="Toggle navigation">
-      <span class="hamburger"></span>
-    </button>
-    <button class="add-color-btn" onclick="openOverlay()">Add Color</button>
+    
+    <button class="add-color-btn" onclick="openOverlay()">
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff">
+    <path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/>
+  </svg>
+  Add Color
+</button>
+
   </nav>
 
   <!-- Main Content -->
   <main>
     <section id="home">
-      <h1>Welcome to Color Inspiration</h1>
+      <h1>The fastest growing color library in the world</h1>
       <p>Explore a world of evocative hues and share your own.</p>
     </section>
     <section id="colors">
-      <h2>Colors</h2>
+      <h2 style="font-size: 13px;margin-top: 30px;">Colors</h2>
       <div class="color-grid" id="color-grid">
         <!-- Colors will be populated dynamically -->
       </div>
@@ -43,7 +47,7 @@
 
   <!-- Overlay for Color Submission -->
   <div id="color-overlay" class="overlay">
-     <span class="close-btn" aria-label="Close popup" onclick="closeOverlay()">&times;</span>
+     <span class="close-btn" aria-label="Close popup" onclick="closeOverlay()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></span>
     <div class="overlay-content">
         
      

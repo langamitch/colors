@@ -1,13 +1,14 @@
 // Firebase Configuration (Replace with your config)
-const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
-};
+  const firebaseConfig = {
+    apiKey: "AIzaSyCTeJc2NFk8_vzay1Ne_o_0CqiXodQixSg",
+    authDomain: "colors-88465.firebaseapp.com",
+    databaseURL: "https://colors-88465-default-rtdb.firebaseio.com",
+    projectId: "colors-88465",
+    storageBucket: "colors-88465.firebasestorage.app",
+    messagingSenderId: "1018041730922",
+    appId: "1:1018041730922:web:e43574c98741b796fe4713",
+    measurementId: "G-C1EH1QCV8T"
+  };
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
