@@ -26,7 +26,7 @@ body {
 }
 
 .logo {
-  font-size: 18px;
+  font-size: 22px;
   font-weight: bold;
   color: #000; /* Ambient Pink */
 }
@@ -132,7 +132,7 @@ h2 {
 .color-card {
   display: flex;
   align-items: flex-start;
-  gap: 2rem;
+  gap: 1rem;
   background: none;
   box-shadow: none;
   border: none;
@@ -168,8 +168,8 @@ h2 {
 
 
 .color-desc {
-  
-  font-size: 9px;
+   font-weight: 500;
+  font-size: 11px;
   color: #000;
   margin-top: 0.2em;
   white-space: pre-line;
