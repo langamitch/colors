@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color Inspiration</title>
+  <link rel="stylesheet" href="index.css">
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js"></script>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="logo">Color Inspiration</div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#colors">Colors</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span class="hamburger"></span>
+    </button>
+    <button class="add-color-btn" onclick="openOverlay()">Add Color</button>
+  </nav>
+
+  <!-- Main Content -->
+  <main>
+    <section id="home">
+      <h1>Welcome to Color Inspiration</h1>
+      <p>Explore a world of evocative hues and share your own.</p>
+    </section>
+    <section id="colors">
+      <h2>Our Colors</h2>
+      <div class="color-grid" id="color-grid">
+        <!-- Colors will be populated dynamically -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Overlay for Color Submission -->
+  <div id="color-overlay" class="overlay">
+    <div class="overlay-content">
+      <span class="close-btn" onclick="closeOverlay()">×</span>
+      <h2>Submit a Color</h2>
+      <form id="color-form">
+        <label for="color-name">Color Name:</label>
+        <input type="text" id="color-name" name="color-name" required maxlength="50">
+        <label for="color-hex">Hex Code:</label>
+        <input type="text" id="color-hex" name="color-hex" placeholder="#FFFFFF" required pattern="^#[0-9A-Fa-f]{6}$">
+        <label for="color-desc">Description:</label>
+        <textarea id="color-desc" name="color-desc" required maxlength="200"></textarea>
+        <button type="submit">Submit</button>
+      </form>
+      <p id="form-error" class="error-message"></p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Color Inspiration. All rights reserved.</p>
+    <ul class="footer-links">
+      <li><a href="#privacy">Privacy Policy</a></li>
+      <li><a href="#terms">Terms of Use</a></li>
+      <li><a href="#contact">Contact Us</a></li>
+    </ul>
+  </footer>
+
+  <script src="index.js"></script>
+</body>
+</html>
