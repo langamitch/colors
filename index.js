@@ -91,7 +91,7 @@ if (colorForm) {
       console.log("Invalid name length");
       return;
     }
-    if (desc.length === 0 || desc.length > 200) {
+    if (desc.length === 0 || desc.length > 600) {
       errorElement.textContent =
         "Description must be between 1 and 200 characters";
       errorElement.style.display = "block";
