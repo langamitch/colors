@@ -154,12 +154,10 @@ if (colorGrid) {
     desc.className = "color-desc";
     desc.textContent = colorData.description;
     
-    const hex = document.createElement ("div");
-    hex.className = "hex";
-    hex.textContent = colorData.hex;
+    
 
     info.appendChild(title);
-    info.appendChild(hex);
+    
     info.appendChild(desc);
 
     card.appendChild(swatch);
