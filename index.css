@@ -7,8 +7,8 @@
 
 body {
   font-family: "Inter", sans-serif;
-  background-color: rgb(255, 255, 255); /* Inspired by Midnight */
-  color: rgb(0, 0, 0); /* Light text for contrast */
+  background-color: #000; /* Inspired by Midnight */
+  color: #757575; /* Light text for contrast */
   line-height: 1.6;
 }
 
@@ -19,7 +19,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: rgb(255, 255, 255); /* Inky Pigment */
+  background-color:#000; /* Inky Pigment */
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -28,7 +28,7 @@ body {
 .logo {
   font-size: 22px;
   font-weight: bold;
-  color: #000; /* Ambient Pink */
+  color: #fff; /* Ambient Pink */
 }
 
 .nav-links {
@@ -51,8 +51,8 @@ body {
 }
 
 .add-color-btn {
-  background-color: #000;
-  color: white;
+  background-color: #757575;
+  color: black;
   border: none;
   display: flex; /* Use flexbox for layout */
   align-items: center; /* Vertically center icon and text */
@@ -132,17 +132,17 @@ h2 {
 .color-card {
   display: flex;
   align-items: flex-start;
-  gap: 1rem;
+  gap:10px;
   background: none;
   box-shadow: none;
-  border: none;
-  padding: 0;
+  border: 1px solid #757575;
+  padding: 10px;
 }
 
 .swatch {
-  width: 150px;
-  height: 150px;
-  border-radius: 6px;
+  width: 80px;
+  height: 80px;
+  border-radius: 0px;
   background: #ccc; /* Will be set inline by JS */
   flex-shrink: 0;
   border: 1px solid #e0e0e0;
