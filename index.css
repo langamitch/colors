@@ -329,7 +329,7 @@ footer {
 @media (max-width: 768px) {
   .navbar {
     display: block;
-    flex-direction: column;
+    flex-direction: row;
     align-items: left;
     text-align: left;
   }
