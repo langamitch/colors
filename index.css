@@ -155,6 +155,10 @@ h2 {
   flex-direction: column;
   justify-content: flex-start;
 }
+.hex, .color-title{
+  display:flex;
+  flex-direction:row;
+  gap:10px;}
 
 .color-title {
   text-transform: uppercase;
