@@ -51,8 +51,8 @@ body {
 }
 
 .add-color-btn {
-  background-color: #757575;
-  color: black;
+  background-color: #fff;
+  color:white;
   border: none;
   display: flex; /* Use flexbox for layout */
   align-items: center; /* Vertically center icon and text */
@@ -105,7 +105,7 @@ body {
 main {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
 }
 
 h1,
