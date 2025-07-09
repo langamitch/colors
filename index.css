@@ -52,7 +52,7 @@ body {
 
 .add-color-btn {
   background-color: #fff;
-  color:white;
+  color:black;
   border: none;
   display: flex; /* Use flexbox for layout */
   align-items: center; /* Vertically center icon and text */
@@ -125,7 +125,7 @@ h2 {
 .color-grid {
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
+  gap: 10px;
   margin-top: 2rem;
 }
 
@@ -135,8 +135,10 @@ h2 {
   gap:10px;
   background: none;
   box-shadow: none;
-  border: 1px solid #757575;
-  padding: 10px;
+  border-top: 2px solid #757575;
+  border-bottom:2px solid #757575;
+  padding-top: 10px;
+  padding-bottom:10px;
 }
 
 .swatch {
@@ -162,6 +164,7 @@ h2 {
 }
 
 .color-number {
+  display:none;
   margin-right: 0.5em;
 }
 
@@ -169,7 +172,7 @@ h2 {
 
 .color-desc {
    font-weight: 500;
-  font-size: 11px;
+  font-size: 13px;
   color: #757575;
   margin-top: 0.2em;
   white-space: pre-line;
